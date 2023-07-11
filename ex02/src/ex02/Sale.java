@@ -30,7 +30,7 @@ public class Sale {
 				break allroof;
 			case "1":
 				sale =new SaleVO();
-				sale.setCode(String.valueOf(cnt));
+				sale.setCode(cnt);
 				System.out.println("상품 코드 > " + cnt++);
 				System.out.print("이름 > ");
 				sale.setName(sc.nextLine());
@@ -79,9 +79,6 @@ public class Sale {
 				cd = sc.nextLine();
 				sale = search(list, cd);
 				if(sale.getCode() != null) {
-					System.out.println("정말로 삭제하시겠습니까?");
-					String ok = sc.nextLine();
-					
 					list.remove(sale);
 					System.out.println("상품제거 완료");
 				}else {
@@ -107,5 +104,4 @@ public class Sale {
 		}
 		return vo;
 	}
-
 }

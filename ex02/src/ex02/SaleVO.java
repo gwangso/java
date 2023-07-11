@@ -23,8 +23,8 @@ public class SaleVO {
 		return code;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCode(int code) {
+		this.code = String.valueOf(code);
 	}
 
 	public String getName() {

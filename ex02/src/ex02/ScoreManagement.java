@@ -52,6 +52,7 @@ public class ScoreManagement {
 			case "2":
 				System.out.print("학번 입력 > ");
 				String src = sc.nextLine();
+				
 				score = search(list, src); //score변수는 위에있다
 				if (score.getSno()==null) {
 					System.out.println("학생 없음");					
@@ -120,7 +121,6 @@ public class ScoreManagement {
 		boolean find = false;
 		for (ScoreVO s : list) {
 			if(s.getSno().equals(sno)) {
-				find = true;
 				vo = s;
 			}
 		}
