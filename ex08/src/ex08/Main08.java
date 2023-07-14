@@ -4,7 +4,7 @@ import java.util.*;
 import java.text.*;
 import java.sql.*;
 
-public class Main {
+public class Main08 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -187,24 +187,24 @@ public class Main {
 						System.out.println("처음으로 돌아갑니다.");
 						break;
 					} else {
-						AccountVO outvo = adao.search(outac);
-						if (outvo.getAname() == null) {
+						AccountVO outavo = adao.search(outac);
+						if (outavo.getAname() == null) {
 							System.out.println("해당 계좌번호가 존재하지 않습니다.");
 							System.out.println("다시입력해주세요");
 						} else {
-							outvo.print_port();
+							outavo.print_port();
 							int inac = input("이체할 계좌번호");
 							if (inac == 0) {
 								System.out.println("출금 취소");
 								System.out.println("처음으로 돌아갑니다.");
 								break;
 							} else {
-								AccountVO invo = adao.search(inac);
-								if (invo.getAname() == null) {
+								AccountVO inavo = adao.search(inac);
+								if (inavo.getAname() == null) {
 									System.out.println("해당 계좌번호가 존재하지 않습니다.");
 									System.out.println("다시입력해주세요");
 								} else {
-									invo.print_port();
+									inavo.print_port();
 									while (true) {
 										int transfer = input("이체 금액");
 										if (transfer == 0) {
@@ -212,27 +212,27 @@ public class Main {
 											System.out.println("처음으로 돌아갑니다.");
 											break;
 										} else {
-											if (outvo.getBalance() >= transfer) {
+											if (outavo.getBalance() >= transfer) {
 												System.out.print("정말로 이체하시겠습니까?(Y/y)");
 												String ok = sc.nextLine();
 												if (ok.equals("Y") || ok.equals("y") || ok.equals("ㅛ")) {
-													outvo.setBalance(outvo.getBalance() - transfer);
-													invo.setBalance(invo.getBalance() + transfer);
-													adao.update(outvo);
-													adao.update(invo);
+													outavo.setBalance(outavo.getBalance() - transfer);
+													inavo.setBalance(inavo.getBalance() + transfer);
+													adao.update(outavo);
+													adao.update(inavo);
 													DetailVO otdvo = new DetailVO();
-													otdvo.setAno(outvo.getAno());
+													otdvo.setAno(outavo.getAno());
 													otdvo.setAmount(transfer);
 													otdvo.setDtype("출금");
 													ddao.insert(otdvo);
 													DetailVO itdvo = new DetailVO();
-													itdvo.setAno(invo.getAno());
+													itdvo.setAno(inavo.getAno());
 													itdvo.setAmount(transfer);
 													itdvo.setDtype("입금");
 													ddao.insert(itdvo);
 													System.out.println("이체완료");
-													System.out.println(outvo.toString());
-													System.out.println(invo.toString());
+													System.out.println(outavo.toString());
+													System.out.println(inavo.toString());
 													repeat=false;
 													break;
 												} else {
